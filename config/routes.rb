@@ -1,5 +1,30 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope module: :public do
+  root :to =>"homes#top"
+  get "/about"=>"homes#about"
+  resources :items, only: [:index, :show]
+  resources :customers, only: [:show, :edit, :update]
+  get "/customers/:id/withdrawal"=>"customers#withdrawal"
+  patch "/customers/:id/withdrawal"=>"customers#withdrawal_update"
+  resources :cart_items, only: [:index, :update, :destroy, :create]
+  delete "/cart_items/all"=>"cart_items#all_destroy"
+  resources :orders, only: [:new, :create, :index, :show]
+  get "/orders/confirmation"=>"orders#confirmation"
+  get "/orders/completion"=>"orders#completion"
+  resources :registered_addresses, only: [:index, :edit, :create, :update, :destroy]
+  end
+
+  namespace :admin do
+    root :to =>"homes#top"
+    get "/about"=>"homes#about"
+  end
+
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 end
