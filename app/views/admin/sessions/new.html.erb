@@ -1,0 +1,30 @@
+<div class="container ml-5">
+  <h2>管理者ログイン</h2>
+
+  <%= form_with model: @admin, url: admin_session_path do |f| %>
+  
+  <%= render "admin/shared/error_messages", resource: resource %>
+
+    <div class="row">
+      <p class="col-md-3">メールアドレス</p>
+      <div class="field col-md-9">
+        <%= f.email_field :email, :size=>"72", autofocus: true, required: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">パスワード</p>
+      <div class="field col-md-9">
+        <%= f.password_field :password, :size=>"72", autofocus: true, required: true, autocomplete: "password" %>
+      </div>
+    </div>
+
+    <div class="actions row">
+      <div class="col-md-3"></div>
+      <div class="field col-md-9">
+        <%= f.submit "ログイン", class: "text-light btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
