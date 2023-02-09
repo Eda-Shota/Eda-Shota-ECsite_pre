@@ -1,2 +1,29 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container ml-5">
+  <div class="row">
+    
+    <div class="col-md-2 border">
+      <p class="row border">ジャンル検索</p>
+      <p class="row">ケーキ</p>
+      <p class="row">焼き菓子</p>
+      <p class="row">プリン</p>
+      <p class="row">キャンディ</p>
+    </div>
+    
+    <div class="col-md-10">
+      <h2>商品一覧(全<%= Item.count %>件)</h2>
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-md-3">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_item_image, size:'100x100' %>
+          <% end %>
+            <br>
+            <%= item.item_name %><br>
+            ￥<%= item.price %>
+          </div>
+        <% end %>
+      </div>
+        <%= paginate @items %>
+    </div>
+  </div>
+</div>

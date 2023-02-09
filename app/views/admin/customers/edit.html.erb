@@ -1,2 +1,79 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container ml-5">
+  <h1><%= @customer.full_name %>さんの会員情報編集</h1>
+
+  <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
+
+    <div class="row">
+      <p class="col-md-3">会員ID</p>
+      <div class="field col-md-9">
+        <%= @customer.id %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <p class="col-md-3">氏名</p>
+      <div class="field col-md-4">
+        <%= f.text_field :last_name, placeholder: "苗字", :size=>"36", required: true, autocomplete: "last_name" %>
+      </div>
+      <div class="field col-md-4">
+        <%= f.text_field :first_name, placeholder: "名前", :size=>"36", required: true, autocomplete: "first_name" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">フリガナ</p>
+      <div class="field col-md-4">
+        <%= f.text_field :last_name_kana, placeholder: "ミョウジ", :size=>"36", required: true, autocomplete: "last_name_kana" %>
+      </div>
+      <div class="field col-md-4">
+        <%= f.text_field :first_name_kana, placeholder: "ナマエ", :size=>"36", required: true, autocomplete: "first_name_kana" %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <p class="col-md-3">郵便番号</p>
+      <div class="field col-md-9">
+        <%= f.number_field :telephone_number, placeholder: "郵便番号", :size=>"36", required: true, autocomplete: "telephone_number" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">住所</p>
+      <div class="field col-md-9">
+        <%= f.text_field :address, placeholder: "住所", :size=>"72", required: true, autocomplete: "address" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">電話番号</p>
+      <div class="field col-md-9">
+        <%= f.number_field :telephone_number, placeholder: "電話番号", :size=>"36", required: true, autocomplete: "telephone_number" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">メールアドレス</p>
+      <div class="field col-md-9">
+        <%= f.text_field :email, placeholder: "メールアドレス", :size=>"36", required: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">会員ステータス</p>
+      <div class="field col-md-9">
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_deleted, "有効" %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_deleted, "退会" %>
+      </div>
+    </div>
+      
+    <div class="actions row">
+      <div class="col-md-3"></div>
+      <div class="field col-md-9">
+        <%= f.submit "変更を保存", class: "text-light btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+
+</div> 

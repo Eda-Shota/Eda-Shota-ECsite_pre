@@ -1,2 +1,24 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container ml-5">
+  <div class="row">
+    
+    <div class="col-md-2 border">
+      <p class="row border">ジャンル検索</p>
+      <p class="row">ケーキ</p>
+      <p class="row">焼き菓子</p>
+      <p class="row">プリン</p>
+      <p class="row">キャンディ</p>
+    </div>
+    
+    <div class="col-md-4">
+      <%= image_tag @item.get_item_image, size:'100x100' %>
+    </div>
+
+    <div class="col-md-6">
+      <h3><%= @item.item_name %></h3>
+      <p><%= @item.item_detail %></p> 
+      <p>￥<%= @item.price %>(税込)</p>
+    </div>
+　<% フォームに隠しフォームも記述しつつ、個数のセレクトボックスと送信ボタンを作る。 %>
+
+  </div>
+</div>

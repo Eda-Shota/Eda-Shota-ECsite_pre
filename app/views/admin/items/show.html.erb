@@ -1,2 +1,39 @@
-<h1>Admin::Items#shouw</h1>
-<p>Find me in app/views/admin/items/shouw.html.erb</p>
+<div class="container ml-5">
+  <h1>商品詳細</h1>
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= image_tag @item.get_item_image, size:'100x100' %>
+    </div>
+    <table class='row col-md-8'>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>商品名</td>
+          <td><%= @item.item_name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= @item.item_detail %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= @item.item_genre.genre_name %></td>
+        </tr>
+        <tr>
+          <td>税込価格<br>(税抜価格)</td>
+          <td><%= @item.with_tax_price%>(<%= @item.price%>)円</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+        <td class="<%= ' text-success' if @item.status == "販売中" %> <%= ' text-secondary' if @item.status == "販売停止中" %>"><%= @item.status %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-sm btn-success" %>
+  </div>     
+</div> 

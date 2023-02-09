@@ -1,2 +1,59 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container ml-5">
+  <h1>商品新規登録</h1>
+
+  <%= form_with model: @item, url: admin_items_path do |f| %>
+
+    <div class="row">
+      <p class="col-md-3">商品画像</p>
+      <div class="field col-md-9">
+        <%= f.file_field :item_image, class: "form-control-file user_image", accept: 'image/*' %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <p class="col-md-3">商品名</p>
+      <div class="field col-md-9">
+        <%= f.text_field :item_name, placeholder: "商品名", :size=>"72", required: true, autocomplete: "item_name" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">商品説明</p>
+      <div class="field col-md-9">
+        <%= f.text_area :item_detail, placeholder: "ここに説明文を記述します", :size=>"72", required: true, autocomplete: "item_detail" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">税抜価格</p>
+      <div class="field col-md-9">
+        <%= f.number_field :price, required: true, autocomplete: "price" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">ジャンル</p>
+      <div class="field col-md-9">
+        <%= f.collection_select :item_genre_id, @item_genres, :id, :genre_name, include_blank: "選択して下さい", required: true, autocomplete: "item_genre_id" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col-md-3">販売ステータス</p>
+      <div class="field col-md-9">
+        <%= f.radio_button :status, "販売中" %>
+        <%= f.label :status, "販売中" %>
+        <%= f.radio_button :status, "販売停止中" %>
+        <%= f.label :status, "販売停止中" %>
+      </div>
+    </div>
+      
+    <div class="actions row">
+      <div class="col-md-3"></div>
+      <div class="field col-md-9">
+        <%= f.submit "新規登録", class: "text-light btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+</div> 
