@@ -17,8 +17,15 @@
       <h3><%= @item.item_name %></h3>
       <p><%= @item.item_detail %></p> 
       <p>￥<%= @item.price %>(税込)</p>
-    </div>
-　<% フォームに隠しフォームも記述しつつ、個数のセレクトボックスと送信ボタンを作る。 %>
+
+    <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :price, :value => @item.price %>
+        <%= f.select :amount, *[1..10], include_blank: "選択して下さい", required: true, autocomplete: "amount" %>
+        <%= f.submit "カートに入れる", class: "text-light btn btn-success" %>
+    <% end %>
+     </div>   
+    
 
   </div>
 </div>

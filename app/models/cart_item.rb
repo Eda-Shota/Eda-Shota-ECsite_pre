@@ -5,6 +5,6 @@ class CartItem < ApplicationRecord
   with_options presence: true do
     validates :cart_id
     validates :item_id
-    validates :quantity
+    validates :amount
   end
 end
